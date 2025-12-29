@@ -11,16 +11,82 @@
 我们选取了稠密数据集 (ML-1M) 与稀疏数据集 (Amazon-Grocery) 进行对比实验，评估模型在不同场景下的性能表现：
 
 ### 1. 模型性能总表
-| Model | HR@5 | NDCG@5 | HR@10 | NDCG@10 | HR@20 | NDCG@20 |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Dataset: ML-1M (Dense)** |
-| BPRMF | **0.3859** | **0.2625** | **0.5536** | **0.3162** | **0.7526** | **0.3665** |
-| LightGCN | 0.3660 | 0.2450 | 0.5261 | 0.2966 | 0.7276 | 0.3474 |
-| DCCF | 0.2866 | 0.1974 | 0.4288 | 0.2741 | 0.6917 | 0.2973 |
-| **Dataset: Amazon-Grocery (Sparse)** |
-| BPRMF | 0.3238 | 0.2233 | 0.4342 | 0.2592 | 0.5479 | 0.2877 |
-| LightGCN | **0.3708** | **0.2542** | **0.4974** | **0.2954** | **0.6156** | **0.3252** |
-| DCCF (Best) | 0.3504 | 0.2444 | 0.4633 | 0.2811 | 0.5677 | 0.3075 |
+> **注**：表中 <span style="background-color: #e6ffec;"><b>加粗且高亮</b></span> 的数值为该数据集下的最优结果。
+<table>
+  <thead>
+    <tr>
+      <th align="left">Model</th>
+      <th align="center">HR@5</th>
+      <th align="center">NDCG@5</th>
+      <th align="center">HR@10</th>
+      <th align="center">NDCG@10</th>
+      <th align="center">HR@20</th>
+      <th align="center">NDCG@20</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: #f6f8fa;">
+      <td colspan="7" align="center"><b>Dataset:  🎞️ ML-1M (Dense)</b> </td>
+    </tr>
+    <tr>
+      <td align="left" style="background-color: #e6ffec;"><b>BPRMF</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.3859</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.2625</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.5536</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.3162</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.7526</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.3665</b></td>
+    </tr>
+    <tr>
+      <td align="left">LightGCN</td>
+      <td align="center">0.3660</td>
+      <td align="center">0.2450</td>
+      <td align="center">0.5261</td>
+      <td align="center">0.2966</td>
+      <td align="center">0.7276</td>
+      <td align="center">0.3474</td>
+    </tr>
+    <tr>
+      <td align="left">DCCF</td>
+      <td align="center">0.2866</td>
+      <td align="center">0.1974</td>
+      <td align="center">0.4288</td>
+      <td align="center">0.2741</td>
+      <td align="center">0.6917</td>
+      <td align="center">0.2973</td>
+    </tr>
+    <tr style="background-color: #f6f8fa;">
+      <td colspan="7" align="center"><b>Dataset: 🛒 Grocery_and_Gourmet_Food (Sparse)</b> </td>
+    </tr>
+    <tr>
+      <td align="left">BPRMF</td>
+      <td align="center">0.3238</td>
+      <td align="center">0.2233</td>
+      <td align="center">0.4342</td>
+      <td align="center">0.2592</td>
+      <td align="center">0.5479</td>
+      <td align="center">0.2877</td>
+    </tr>
+    <tr>
+      <td align="left" style="background-color: #e6ffec;"><b>LightGCN</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.3708</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.2542</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.4974</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.2954</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.6156</b></td>
+      <td align="center" style="background-color: #e6ffec;"><b>0.3252</b></td>
+    </tr>
+    <tr>
+      <td align="left">DCCF (Best)</td>
+      <td align="center">0.3504</td>
+      <td align="center">0.2444</td>
+      <td align="center">0.4633</td>
+      <td align="center">0.2811</td>
+      <td align="center">0.5677</td>
+      <td align="center">0.3075</td>
+    </tr>
+  </tbody>
+</table>
 
 ### 2. 结论摘要
 | 数据集 | 特性 | 结论 |
@@ -74,4 +140,4 @@ python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food
 ### 3. 在ReChorus文件夹内运行示例命令执行训练与评测：
 ```bash
 python src/main.py --model_name DCCF --dataset Grocery_and_Gourmet_Food --test_all 0 --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 0.0001 --cen_reg 0.001 --n_intents 4 --num_workers 0
-···
+```
