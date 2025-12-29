@@ -1,23 +1,23 @@
 # DCCF 模型在 ReChorus 框架下的复现与性能边界分析
 
-本项目基于 **ReChorus** 统一推荐框架复现了去中心化意图解耦对比学习模型 (**DCCF**) [cite_start]。旨在通过意图解耦机制有效提升模型在复杂推荐场景中的鲁棒性 [cite: 7]。
+本项目基于 **ReChorus** 统一推荐框架复现了去中心化意图解耦对比学习模型 (**DCCF**) 。旨在通过意图解耦机制有效提升模型在复杂推荐场景中的鲁棒性。
 
 ## 🌟 核心功能
-* [cite_start]**意图解耦机制**: 通过引入 $K$ 个可学习的全局意图原型捕获用户多维偏好，有效缓解传统图卷积模型中的过度平滑问题 [cite: 18, 23, 24]。
-* [cite_start]**自适应掩码生成**: 基于节点嵌入计算用户与物品的余弦相似度 $sim(u,i)$，动态生成增强图结构 $G'$ 以抑制交互噪声 [cite: 30, 34, 101]。
-* [cite_start]**工程化显存优化**: 本项目实现了基于 **分块 (Chunk-based)** 的流式推理算法，通过显存预判与显式垃圾回收 (GC) 协同工作，在不损失计算精度的前提下将显存峰值降低了约 40% [cite: 8, 62]。
+* **意图解耦机制**: 通过引入 $K$ 个可学习的全局意图原型捕获用户多维偏好，有效缓解传统图卷积模型中的过度平滑问题。
+* **自适应掩码生成**: 基于节点嵌入计算用户与物品的余弦相似度 $sim(u,i)$，动态生成增强图结构 $G'$ 以抑制交互噪声。
+* **工程化显存优化**: 本项目实现了基于 **分块 (Chunk-based)** 的流式推理算法，通过显存预判与显式垃圾回收 (GC) 协同工作，在不损失计算精度的前提下将显存峰值降低了约 40% 。
 
 ## 📊 实验结果
-[cite_start]我们选取了稠密数据集 (ML-1M) 与稀疏数据集 (Amazon-Grocery) 进行对比实验，评估模型在不同场景下的性能表现 [cite: 8, 19]：
+我们选取了稠密数据集 (ML-1M) 与稀疏数据集 (Amazon-Grocery) 进行对比实验，评估模型在不同场景下的性能表现：
 
-### [cite_start]1. 模型性能总表 [cite: 97]
+###1. 模型性能总表
 | Model | HR@5 | NDCG@5 | HR@10 | NDCG@10 | HR@20 | NDCG@20 |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Dataset: ML-1M (Dense)** | | | | | | |
+| **Dataset: ML-1M (Dense)** |
 | BPRMF | **0.3859** | **0.2625** | **0.5536** | **0.3162** | **0.7526** | **0.3665** |
 | LightGCN | 0.3660 | 0.2450 | 0.5261 | 0.2966 | 0.7276 | 0.3474 |
 | DCCF | 0.2866 | 0.1974 | 0.4288 | 0.2741 | 0.6917 | 0.2973 |
-| **Dataset: Amazon-Grocery (Sparse)** | | | | | | |
+| **Dataset: Amazon-Grocery (Sparse)** |
 | BPRMF | 0.3238 | 0.2233 | 0.4342 | 0.2592 | 0.5479 | 0.2877 |
 | LightGCN | **0.3708** | **0.2542** | **0.4974** | **0.2954** | **0.6156** | **0.3252** |
 | DCCF (Best) | 0.3504 | 0.2444 | 0.4633 | 0.2811 | 0.5677 | 0.3075 |
@@ -25,11 +25,11 @@
 ### 2. 结论摘要
 | 数据集 | 特性 | 结论 |
 | :--- | :--- | :--- |
-| **ML-1M (稠密)** | [cite_start]交互高度稠密 (4.47%) [cite: 100] | [cite_start]**性能退化**：强协同信号下意图过度解耦稀释了全局信号，且掩码机制容易产生“错误剪枝”并误删真实偏好 [cite: 9, 99, 101]。 |
-| **Amazon-Grocery (稀疏)** | [cite_start]极其稀疏，长尾商品多 [cite: 85] | [cite_start]**优势展现**：图卷积结构与自适应增强机制有效缓解了数据稀疏性，模型表现优于基础 BPRMF [cite: 8, 124, 141]。 |
+| **ML-1M (稠密)** |交互高度稠密 (4.47%)|**性能退化**：强协同信号下意图过度解耦稀释了全局信号，且掩码机制容易产生“错误剪枝”并误删真实偏好。 |
+| **Amazon-Grocery (稀疏)** |极其稀疏，长尾商品多 |**优势展现**：图卷积结构与自适应增强机制有效缓解了数据稀疏性，模型表现优于基础 BPRMF。 |
 
-## [cite_start]🧪 消融实验 (Ablation Study) [cite: 162]
-[cite_start]我们在 Amazon-Grocery 数据集上考察了核心组件对推荐质量的具体贡献 [cite: 163, 164]：
+##🧪 消融实验 (Ablation Study)
+我们在 Amazon-Grocery 数据集上考察了核心组件对推荐质量的具体贡献：
 
 | 模型变体 | HR@10 | NDCG@10 | HR@20 | NDCG@20 |
 | :--- | :---: | :---: | :---: | :---: |
@@ -43,27 +43,35 @@
 **基线指标 (Full Model)**:
 ```bash
 python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 1e-5 --cen_reg 1e-4 --n_intents 4 --num_workers 0 --ablation none
-111
+```
 
-(i) 解耦多意图编码消融（-Disen / DME）:
-
+* (i) 解耦多意图编码消融（-Disen / DME）:考察意图原型对挖掘细粒度潜在偏好的作用。
+```bash
 python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 1e-5 --cen_reg 1e-4 --n_intents 4 --num_workers 0 --ablation DME
+```
 
 (ii) 参数化自适应掩码 (PAM)；
-意图自适应掩码消融（-DisenR / PAM-Disen）:
+意图自适应掩码消融（-DisenR / PAM-Disen）:考察自适应剪枝对冗余噪声的识别作用 。
+```bash
 python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 1e-5 --cen_reg 1e-4 --n_intents 4 --num_workers 0 --ablation DisenR
+```
 
-(iii) 自监督学习 (SSL)：
+(iii) 自监督学习 (SSL)：察自监督信号对模型稳定性的支撑作用 。
 
 全局自监督信号消融（-DisenG / SSL-Global）:
+```bash
 python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 1e-5 --cen_reg 1e-4 --n_intents 4 --num_workers 0 --ablation DisenG
+```
 
 增强自监督信号消融（-AllAda / SSL-Augment）:
+```bash
 python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 1e-5 --cen_reg 1e-4 --n_intents 4 --num_workers 0 --ablation AllAda
+```
 
 ## 🛠️ 安装与运行
-1. 克隆本项目并安装 ReChorus 环境。
-2. 本模型代码已对应放入 `src/models/general/` 目录。
-3. 在ReChorus文件夹内运行示例命令：
+*1. 克隆本项目并安装 ReChorus 环境。
+*2. 本模型代码已对应放入 `src/models/general/` 目录。
+*3. 在ReChorus文件夹内运行示例命令执行训练与评测：
 ```bash
 python src/main.py --model_name DCCF --dataset Grocery_and_Gourmet_Food --test_all 0 --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 0.0001 --cen_reg 0.001 --n_intents 4 --num_workers 0
+···
