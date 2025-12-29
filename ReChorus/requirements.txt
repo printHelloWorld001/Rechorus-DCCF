@@ -1,0 +1,14 @@
+# --- Conda Managed Packages ---
+# python==3.10.4 (Installed via conda create)
+# torch==1.12.1   (Installed via conda install)
+# cudatoolkit==10.2 (Installed via conda install)
+
+# --- Pip Managed Packages ---
+numpy==1.22.3
+ipython==8.10.0
+jupyter==1.0.0
+tqdm==4.66.1
+pandas==1.4.4
+scikit-learn==1.1.3
+scipy==1.7.3
+PyYAML

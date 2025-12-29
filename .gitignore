@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+bin/
+lib/
+include/
+datasets/
+log/
+chorus_env/
+ReChorus/data/
+*.dat
+*.csv
+*.whl
+model/
