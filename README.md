@@ -11,7 +11,8 @@
 我们选取了稠密数据集 (ML-1M) 与稀疏数据集 (Amazon-Grocery) 进行对比实验，评估模型在不同场景下的性能表现：
 
 ### 1. 模型性能总表
-> **注**：表中 <span style="background-color: #e6ffec;"><b>加粗且高亮</b></span> 的数值为该数据集下的最优结果。
+
+> **注**：表中<b><code>加粗且带背景</code></b> 的数值为该数据集下的最优结果。
 <table>
   <thead>
     <tr>
@@ -26,16 +27,16 @@
   </thead>
   <tbody>
     <tr style="background-color: #f6f8fa;">
-      <td colspan="7" align="center"><b>Dataset:  🎞️ ML-1M (Dense)</b> </td>
+      <td colspan="7" align="center"><b>Dataset:  🎞️ ML-1M (Dense)</b></td>
     </tr>
     <tr>
-      <td align="left" style="background-color: #e6ffec;"><b>BPRMF</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.3859</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.2625</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.5536</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.3162</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.7526</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.3665</b></td>
+      <td align="left">BPRMF</td>
+      <td align="center"><b><code>0.3859</code></b></td>
+      <td align="center"><b><code>0.2625</code></b></td>
+      <td align="center"><b><code>0.5536</code></b></td>
+      <td align="center"><b><code>0.3162</code></b></td>
+      <td align="center"><b><code>0.7526</code></b></td>
+      <td align="center"><b><code>0.3665</code></b></td>
     </tr>
     <tr>
       <td align="left">LightGCN</td>
@@ -56,7 +57,7 @@
       <td align="center">0.2973</td>
     </tr>
     <tr style="background-color: #f6f8fa;">
-      <td colspan="7" align="center"><b>Dataset: 🛒 Grocery_and_Gourmet_Food (Sparse)</b> </td>
+      <td colspan="7" align="center"><b>Dataset: 🛒 Grocery_and_Gourmet_Food</b></td>
     </tr>
     <tr>
       <td align="left">BPRMF</td>
@@ -68,13 +69,13 @@
       <td align="center">0.2877</td>
     </tr>
     <tr>
-      <td align="left" style="background-color: #e6ffec;"><b>LightGCN</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.3708</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.2542</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.4974</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.2954</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.6156</b></td>
-      <td align="center" style="background-color: #e6ffec;"><b>0.3252</b></td>
+      <td align="left">LightGCN</td>
+      <td align="center"><b><code>0.3708</code></b></td>
+      <td align="center"><b><code>0.2542</code></b></td>
+      <td align="center"><b><code>0.4974</code></b></td>
+      <td align="center"><b><code>0.2954</code></b></td>
+      <td align="center"><b><code>0.6156</code></b></td>
+      <td align="center"><b><code>0.3252</code></b></td>
     </tr>
     <tr>
       <td align="left">DCCF (Best)</td>
