@@ -3,7 +3,7 @@
 本项目基于 **ReChorus** 统一推荐框架复现了去中心化意图解耦对比学习模型 (**DCCF**) 。旨在通过意图解耦机制有效提升模型在复杂推荐场景中的鲁棒性。
 
 ## 🌟 核心功能
- **意图解耦机制**: 通过引入 $K$ 个可学习的全局意图原型捕获用户多维偏好，有效缓解传统图卷积模型中的过度平滑问题。
+* **意图解耦机制**: 通过引入 $K$ 个可学习的全局意图原型捕获用户多维偏好，有效缓解传统图卷积模型中的过度平滑问题。
 * **自适应掩码生成**: 基于节点嵌入计算用户与物品的余弦相似度 $sim(u,i)$，动态生成增强图结构 $G'$ 以抑制交互噪声。
 * **工程化显存优化**: 本项目实现了基于 **分块 (Chunk-based)** 的流式推理算法，通过显存预判与显式垃圾回收 (GC) 协同工作，在不损失计算精度的前提下将显存峰值降低了约 40% 。
 
@@ -28,7 +28,7 @@
 | **ML-1M (稠密)** |交互高度稠密 (4.47%)|**性能退化**：强协同信号下意图过度解耦稀释了全局信号，且掩码机制容易产生“错误剪枝”并误删真实偏好。 |
 | **Amazon-Grocery (稀疏)** |极其稀疏，长尾商品多 |**优势展现**：图卷积结构与自适应增强机制有效缓解了数据稀疏性，模型表现优于基础 BPRMF。 |
 
-##🧪 消融实验 (Ablation Study)
+## 🧪 消融实验 (Ablation Study)
 我们在 Amazon-Grocery 数据集上考察了核心组件对推荐质量的具体贡献：
 
 | 模型变体 | HR@10 | NDCG@10 | HR@20 | NDCG@20 |
@@ -69,9 +69,9 @@ python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food
 ```
 
 ## 🛠️ 安装与运行
-** 1. 克隆本项目并安装 ReChorus 环境。
-*2. 本模型代码已对应放入 `src/models/general/` 目录。
-*3. 在ReChorus文件夹内运行示例命令执行训练与评测：
+### 1. 克隆本项目并安装 ReChorus 环境。
+### 2. 本模型代码已对应放入 `src/models/general/` 目录。
+### 3. 在ReChorus文件夹内运行示例命令执行训练与评测：
 ```bash
 python src/main.py --model_name DCCF --dataset Grocery_and_Gourmet_Food --test_all 0 --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 0.0001 --cen_reg 0.001 --n_intents 4 --num_workers 0
 ···
