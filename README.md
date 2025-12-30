@@ -112,15 +112,20 @@ conda activate dccf_env
 ```
 **第二步：安装依赖 (分两步执行)**
 ```bash
-# 1. 创建虚拟环境
-conda create -n dccf_env python=3.10
+# 1. 配置虚拟环境
 conda activate dccf_env
+conda install pytorch==1.12.1 torchvision torchaudio cudatoolkit=10.2 -c pytorch
+# 注意：一定要在成功运行完上条命令后执行下条requirements配置
+pip install -r requirements.txt
 
 # 2. 安装依赖
 # 注意：如果安装 torch-scatter 失败，请参考 PyG 官网根据 CUDA 版本手动安装
 # 如 pip install torch-scatter torch-sparse -f [https://data.pyg.org/whl/torch-1.12.1+cu113.html](https://data.pyg.org/whl/torch-1.12.1+cu113.html)
 # 上述命令适配 PyTorch 1.12.1 + CUDA 11.3
-pip install -r requirements.txt
+# 本次实验复现的cpu环境在官网安装了对应的"torch_scatter-2.0.9-cp310-cp310-win_amd64.whl"和"torch_sparse-0.6.14-cp310-cp310-win_amd64.whl"，故直接执行以下指令
+pip install "绝对路径\torch_scatter-2.0.9-cp310-cp310-win_amd64.whl"
+pip install "绝对路径\torch_sparse-0.6.14-cp310-cp310-win_amd64.whl"
+
 ```
 ### 2. 模型训练 (Training)
 本复现代码已集成至 src/models/general/ 目录。我们提供了针对 稠密数据 (ML-1M) 和 稀疏数据 (Amazon Grocery) 两套经过验证的超参数配置。
