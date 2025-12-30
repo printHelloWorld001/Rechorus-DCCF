@@ -172,5 +172,24 @@ python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food
 ```bash
 python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 1e-5 --cen_reg 1e-4 --n_intents 4 --num_workers 0 --ablation AllAda
 ```
+## 📝 引用 (Reference)
+如果本项目对您的研究有帮助，请引用原始论文和 ReChorus 框架：
+
+```bibtex
+@inproceedings{ren2023dccf,
+  title={Disentangled Contrastive Collaborative Filtering},
+  author={Ren, Xubin and Xia, Lianghao and Zhao, Jiashu and Yin, Dawei and Huang, Chao},
+  booktitle={Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR '23)},
+  pages={1137--1146},
+  year={2023}
+}
+
+@inproceedings{li2024rechorus,
+  title={ReChorus2.0: A Modular and Task-Flexible Recommendation Library},
+  author={Li, Jiayu and Li, Hanyu and He, Zhiyu and Ma, Weizhi and Sun, Peijie and Zhang, Min and Ma, Shaoping},
+  booktitle={Proceedings of the 18th ACM Conference on Recommender Systems (RecSys '24)},
+  pages={1--10},
+  year={2024}
+}
 
 
