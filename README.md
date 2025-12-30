@@ -27,7 +27,7 @@
   </thead>
   <tbody>
     <tr style="background-color: #f6f8fa;">
-      <td colspan="7" align="center"><b>Dataset:  🎞️ ML-1M (Dense)</b></td>
+      <td colspan="7" align="center"><b>Dataset:  🎞️ ML-1M </b></td>
     </tr>
     <tr>
       <td align="left">BPRMF</td>
@@ -95,6 +95,32 @@
 | **ML-1M (稠密)** |交互高度稠密 (4.47%)|**性能退化**：强协同信号下意图过度解耦稀释了全局信号，且掩码机制容易产生“错误剪枝”并误删真实偏好。 |
 | **Amazon-Grocery (稀疏)** |极其稀疏，长尾商品多 |**优势展现**：图卷积结构与自适应增强机制有效缓解了数据稀疏性，模型表现优于基础 BPRMF。 |
 
+## 🛠️ 安装与运行
+### 1. 环境准备
+首先克隆本项目，并安装 ReChorus 框架所需的依赖环境：
+```bash
+git clone [YOUR_REPO_URL]
+cd [YOUR_REPO_NAME]
+pip install -r requirements.txt
+```
+### 2. 模型训练 (Training)
+本复现代码已集成至 src/models/general/ 目录。我们提供了针对 稠密数据 (ML-1M) 和 稀疏数据 (Amazon Grocery) 两套经过验证的超参数配置。
+#### 📌 场景一：ML-1M Top-K (稠密数据)
+
+使用以下指令进行训练：
+
+```bash
+python src/main.py --model_name DCCF --dataset ML_1MTOPK --num_workers 0 --epoch 20 --lr 1e-3 --emb_size 64 --n_layers 2 --n_intents 4
+```
+
+#### 📌 场景二：Amazon Grocery (稀疏数据)
+
+使用以下指令进行训练：
+
+```bash
+python src/main.py --model_name DCCF --dataset Grocery_and_Gourmet_Food --test_all 0 --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 0.0001 --cen_reg 0.001 --n_intents 4 --num_workers 0
+```
+
 ## 🧪 消融实验 (Ablation Study)
 我们在 Amazon-Grocery 数据集上考察了核心组件对推荐质量的具体贡献：
 
@@ -135,10 +161,4 @@ python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food
 python src/main.py --model_name DCCF_Ablation --dataset Grocery_and_Gourmet_Food --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 1e-5 --cen_reg 1e-4 --n_intents 4 --num_workers 0 --ablation AllAda
 ```
 
-## 🛠️ 安装与运行
-### 1. 克隆本项目并安装 ReChorus 环境。
-### 2. 本模型代码已对应放入 `src/models/general/` 目录。
-### 3. 在ReChorus文件夹内运行示例命令执行训练与评测：
-```bash
-python src/main.py --model_name DCCF --dataset Grocery_and_Gourmet_Food --test_all 0 --emb_size 64 --epoch 20 --lr 1e-4 --l2 1e-4 --ssl_reg 0.0001 --cen_reg 0.001 --n_intents 4 --num_workers 0
-```
+
