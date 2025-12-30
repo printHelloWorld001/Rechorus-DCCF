@@ -118,7 +118,7 @@ conda activate dccf_env
 
 # 2. 安装依赖
 # 注意：如果安装 torch-scatter 失败，请参考 PyG 官网根据 CUDA 版本手动安装
-# 如 pip install torch-scatter torch-sparse -f [https://data.pyg.org/whl/torch-1.12.1+cu113.html](https://data.pyg.org/whl/torch-1.12.1+cu113.html
+# 如 pip install torch-scatter torch-sparse -f [https://data.pyg.org/whl/torch-1.12.1+cu113.html](https://data.pyg.org/whl/torch-1.12.1+cu113.html)
 # 上述命令适配 PyTorch 1.12.1 + CUDA 11.3
 pip install -r requirements.txt
 ```
