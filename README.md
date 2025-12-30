@@ -103,7 +103,7 @@
 **第一步：克隆仓库与创建环境**
 ```bash
 # 1. 克隆仓库
-git clone [https://github.com/printHelloWorld001/Rechorus-DCCF.git](https://github.com/printHelloWorld001/Rechorus-DCCF.git)
+git clone https://github.com/printHelloWorld001/Rechorus-DCCF.git
 cd Rechorus-DCCF
 
 # 2. 创建虚拟环境
