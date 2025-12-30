@@ -98,14 +98,19 @@
 ## 🛠️ 安装与运行
 
 ### 1. 环境准备 (Environment Setup)
-本项目基于 **Python 3.10** 开发。建议使用 Conda 创建独立环境以确保依赖兼容性。
+本项目基于 **Python 3.10** 开发。由于图神经网络库 (`torch-scatter`, `torch-sparse`) 对编译环境要求较高，**强烈建议按照以下顺序分步安装**。
 
-**第一步：克隆仓库**
+**第一步：克隆仓库与创建环境**
 ```bash
-git clone https://github.com/printHelloWorld001/Rechorus-DCCF.git
-cd Rechorus-DCCF/ReChorus
+# 1. 克隆仓库
+git clone [https://github.com/printHelloWorld001/Rechorus-DCCF.git](https://github.com/printHelloWorld001/Rechorus-DCCF.git)
+cd Rechorus-DCCF
+
+# 2. 创建虚拟环境
+conda create -n dccf_env python=3.10
+conda activate dccf_env
 ```
-**第二步：创建并激活环境**
+**第二步：安装依赖 (分两步执行)**
 ```bash
 # 1. 创建虚拟环境
 conda create -n dccf_env python=3.10
@@ -113,6 +118,8 @@ conda activate dccf_env
 
 # 2. 安装依赖
 # 注意：如果安装 torch-scatter 失败，请参考 PyG 官网根据 CUDA 版本手动安装
+# 如 pip install torch-scatter torch-sparse -f [https://data.pyg.org/whl/torch-1.12.1+cu113.html](https://data.pyg.org/whl/torch-1.12.1+cu113.html
+# 上述命令适配 PyTorch 1.12.1 + CUDA 11.3
 pip install -r requirements.txt
 ```
 ### 2. 模型训练 (Training)
