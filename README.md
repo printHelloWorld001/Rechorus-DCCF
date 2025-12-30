@@ -102,8 +102,8 @@
 
 **第一步：克隆仓库**
 ```bash
-git clone [YOUR_REPO_URL]
-cd [YOUR_REPO_NAME]
+git clone https://github.com/printHelloWorld001/Rechorus-DCCF.git
+cd Rechorus-DCCF
 ```
 **第二步：创建并激活环境**
 ```bash
