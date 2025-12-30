@@ -103,7 +103,7 @@
 **第一步：克隆仓库**
 ```bash
 git clone https://github.com/printHelloWorld001/Rechorus-DCCF.git
-cd Rechorus-DCCF
+cd Rechorus-DCCF/ReChorus
 ```
 **第二步：创建并激活环境**
 ```bash
