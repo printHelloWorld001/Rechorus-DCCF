@@ -96,11 +96,23 @@
 | **Amazon-Grocery (稀疏)** |极其稀疏，长尾商品多 |**优势展现**：图卷积结构与自适应增强机制有效缓解了数据稀疏性，模型表现优于基础 BPRMF。 |
 
 ## 🛠️ 安装与运行
-### 1. 环境准备
-首先克隆本项目，并安装 ReChorus 框架所需的依赖环境：
+
+### 1. 环境准备 (Environment Setup)
+本项目基于 **Python 3.10** 开发。建议使用 Conda 创建独立环境以确保依赖兼容性。
+
+**第一步：克隆仓库**
 ```bash
 git clone [YOUR_REPO_URL]
 cd [YOUR_REPO_NAME]
+```
+**第二步：创建并激活环境**
+```bash
+# 1. 创建虚拟环境
+conda create -n dccf_env python=3.10
+conda activate dccf_env
+
+# 2. 安装依赖
+# 注意：如果安装 torch-scatter 失败，请参考 PyG 官网根据 CUDA 版本手动安装
 pip install -r requirements.txt
 ```
 ### 2. 模型训练 (Training)
